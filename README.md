@@ -15,24 +15,9 @@
       bun install
    ```
 
-   - Step: 3 `(Hello World)`
+2. ### Update title and favicon in `index.html`
 
-     - Remove `App.css` file
-     - All code remove and print Hello World in `App.jsx`
-
-     ```JSx
-         const App = () => {
-         return (
-            <main className="min-h-svh w-full flex justify-center items-center">
-               <h1 className="text-5xl font-bold text-green-500">Hello World</h1>
-            </main>
-         );
-         };
-
-         export default App;
-     ```
-
-2. ### TailwindCss setup & installation
+3. ### TailwindCss setup & installation
 
    ```bash
          bun add -d tailwindcss postcss autoprefixer
@@ -63,4 +48,19 @@
       @tailwind utilities;
    ```
 
-3. ### Update title and favicon in `index.html`
+4. ### Printing `(Hello World)`
+
+   - Remove `App.css` file
+   - All code remove and print Hello World in `App.jsx`
+
+   ```JSx
+       const App = () => {
+       return (
+          <main className="min-h-svh w-full flex justify-center items-center">
+             <h1 className="text-5xl font-bold text-green-500">Hello World</h1>
+          </main>
+       );
+       };
+
+       export default App;
+   ```
