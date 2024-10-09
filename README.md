@@ -1,8 +1,40 @@
-# React + Vite
+<h1 align="center">Car Business</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. Project Create
 
-Currently, two official plugins are available:
+   Step: 1
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+   ```bash
+      bun create vite car-business
+   ```
+
+   Step: 2
+
+   ```bash
+      cd car-business
+      bun install
+   ```
+
+2. TailwindCss setup & installation
+   ```bash
+      bun add -d tailwindcss
+      bun tailwindcss init
+   ```
+   - Configure your template paths
+   ```JS
+      /** @type {import('tailwindcss').Config} */
+      export default {
+      content: ["./src/**/*.{html,js,ts,jsx,tsx}"],
+      theme: {
+         extend: {},
+      },
+      plugins: [],
+      };
+   ```
+   - Add the Tailwind directives to your CSS
+   ```CSS
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+   ```
+3. Update title and favicon in `index.html`
