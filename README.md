@@ -109,3 +109,9 @@
 
    export default App;
    ```
+
+7. ### Setup React Router
+   - install react-router-dom
+   ```BASH
+   bun add react-router-dom
+   ```
