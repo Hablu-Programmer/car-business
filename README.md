@@ -89,6 +89,24 @@
    };
    ```
 
+   - add font in `index.html` (**class="font-inter"**)
+
+   ```html
+   <!DOCTYPE html>
+   <html lang="en">
+     <head>
+       <meta charset="UTF-8" />
+       <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       <title>Car Business</title>
+     </head>
+     <body>
+       <div id="root" class="font-inter"></div>
+       <script type="module" src="/src/main.jsx"></script>
+     </body>
+   </html>
+   ```
+
 6. ### Add only Auth Button in **`navbar`**
 
    ```jsx
