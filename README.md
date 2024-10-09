@@ -2,23 +2,22 @@
 
 1. Project Create
 
-   Step: 1
+   - Step: 1
 
    ```bash
       bun create vite car-business
    ```
 
-   Step: 2
+   - Step: 2
 
    ```bash
       cd car-business
       bun install
    ```
 
-   Step: 3 `(Hello World)`
-
-   - Remove `App.css` file
-   - All code remove and print Hello World in `App.jsx`
+   - Step: 3 `(Hello World)`
+     - Remove `App.css` file
+     - All code remove and print Hello World in `App.jsx`
 
 2. TailwindCss setup & installation
    ```bash
