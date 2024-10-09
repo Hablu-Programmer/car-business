@@ -16,14 +16,27 @@
    ```
 
    - Step: 3 `(Hello World)`
+
      - Remove `App.css` file
      - All code remove and print Hello World in `App.jsx`
+
+     ```JSx
+         const App = () => {
+         return (
+            <main className="min-h-svh w-full flex justify-center items-center">
+               <h1 className="text-5xl font-bold text-green-500">Hello World</h1>
+            </main>
+         );
+         };
+
+         export default App;
+     ```
 
 2. ### TailwindCss setup & installation
 
    ```bash
-      bun add -d tailwindcss
-      bun tailwindcss init
+         bun add -d tailwindcss postcss autoprefixer
+         bun tailwindcss init -p
    ```
 
    - Configure your template paths
@@ -31,7 +44,10 @@
    ```JS
       /** @type {import('tailwindcss').Config} */
       export default {
-      content: ["./src/**/*.{html,js,ts,jsx,tsx}"],
+      content: [
+         "./index.html",
+         "./src/**/*.{js,ts,jsx,tsx}",
+      ],
       theme: {
          extend: {},
       },
