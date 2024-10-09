@@ -6,6 +6,8 @@ export default {
       colors: {
         primary: "#7963F0 ",
         foreground: "#9A9EA7",
+        "foreground-dark": "#9A9EA7",
+        outline: "#EEEEEE",
       },
       fontFamily: {
         inter: ['"Inter"', "serif"],

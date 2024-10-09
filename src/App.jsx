@@ -3,7 +3,7 @@ import { Register } from "./pages/Register";
 const App = () => {
   return (
     <main>
-      {/* <Navbar />*/}
+      {/* <Navbar /> */}
       <Register />
       {/* <Login /> */}
     </main>
