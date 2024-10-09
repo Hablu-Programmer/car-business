@@ -1,6 +1,6 @@
 <h1 align="center">Car Business</h1>
 
-1. Project Create
+1. ### Project Create
 
    - Step: 1
 
@@ -19,12 +19,15 @@
      - Remove `App.css` file
      - All code remove and print Hello World in `App.jsx`
 
-2. TailwindCss setup & installation
+2. ### TailwindCss setup & installation
+
    ```bash
       bun add -d tailwindcss
       bun tailwindcss init
    ```
+
    - Configure your template paths
+
    ```JS
       /** @type {import('tailwindcss').Config} */
       export default {
@@ -35,10 +38,13 @@
       plugins: [],
       };
    ```
+
    - Add the Tailwind directives to your CSS in `index.css`
+
    ```CSS
       @tailwind base;
       @tailwind components;
       @tailwind utilities;
    ```
-3. Update title and favicon in `index.html`
+
+3. ### Update title and favicon in `index.html`
