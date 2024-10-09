@@ -15,6 +15,11 @@
       bun install
    ```
 
+   Step: 3 `(Hello World)`
+
+   - Remove `App.css` file
+   - All code remove and print Hello World in `App.jsx`
+
 2. TailwindCss setup & installation
    ```bash
       bun add -d tailwindcss
@@ -31,7 +36,7 @@
       plugins: [],
       };
    ```
-   - Add the Tailwind directives to your CSS
+   - Add the Tailwind directives to your CSS in `index.css`
    ```CSS
       @tailwind base;
       @tailwind components;
