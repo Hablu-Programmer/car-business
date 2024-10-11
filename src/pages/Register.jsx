@@ -3,14 +3,14 @@ import { SignUpWith } from "../components/auth/SignUpWith";
 
 export const Register = () => {
   return (
-    <main className="p-7 flex items-center justify-evenly gap-2.5 flex-wrap">
+    <main className="p-7 flex flex-col-reverse lg:flex-row items-center justify-evenly gap-2.5">
       <AuthLeft />
       {/* Right Section */}
-      <section className="py-[70px]">
+      <section className="py-[70px] w-full">
         {/* Header */}
         <div className="flex flex-col justify-center items-center">
           <img src="/logo.svg" alt="Logo" />
-          <h1 className="font-bold text-4xl text-center pt-[34px]">
+          <h1 className="font-bold text-2xl sm:text-3xl lg:text-4xl text-center pt-[34px]">
             Sign Up to getting started
           </h1>
           <p className="text-sm text-foreground pt-[5px]">
