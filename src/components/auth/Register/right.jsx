@@ -4,15 +4,27 @@ import { Header } from "./header";
 import { Step1 } from "./Step1";
 
 export const RegisterRight = () => {
+  const [data, setData] = useState({
+    email: "",
+  });
   const [step, setStep] = useState(1);
 
+  const changeData = (name, value) => setData({ ...data, [name]: value });
+  const nextStep = () => {
+    const stepNo =
+      (step === 1 && data.email.length <= 1 && 2) || (step === 2 && 2) || 1;
+    setStep(stepNo);
+  };
+
+  console.log("🚀 ~ RegisterRight ~ data:", data);
   const stepData = () => {
     switch (step) {
       case 1:
         return {
           main: (
             <>
-              <Step1 nextStep={() => setStep(2)} /> <SocialLogin />
+              <Step1 nextStep={nextStep} changeData={changeData} />
+              <SocialLogin />
             </>
           ),
           title: "Sign Up to getting started",

@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Step1 = ({ nextStep }) => {
+export const Step1 = ({ nextStep, changeData }) => {
   return (
     <form>
       <div className="border rounded-lg border-outline pt-3 p-5">
@@ -11,6 +11,7 @@ export const Step1 = ({ nextStep }) => {
           <input
             placeholder="Enter your email!"
             type="email"
+            onChange={(e) => changeData(e.target.name, e.target.value)}
             className="w-full font-bold text-sm focus:outline-none placeholder:font-normal"
           />
           <img src="/icons/email.png" alt="email icon" />
@@ -25,6 +26,7 @@ export const Step1 = ({ nextStep }) => {
       </div>
 
       <button
+        type="button"
         onClick={nextStep}
         className="w-full bg-primary font-bold text-sm py-4 text-center rounded-[10px] text-white mt-[30px]"
       >
