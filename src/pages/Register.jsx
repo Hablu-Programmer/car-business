@@ -1,5 +1,5 @@
 import { AuthLeft } from "../components/auth/AuthLeft";
-import { RegisterRight } from "../components/auth/Register/RegisterRight";
+import { RegisterRight } from "../components/auth/Register/right";
 
 export const Register = () => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Step1 = () => {
+export const Step1 = ({ nextStep }) => {
   return (
     <form>
       <div className="border rounded-lg border-outline pt-3 p-5">
@@ -24,7 +24,10 @@ export const Step1 = () => {
         </span>
       </div>
 
-      <button className="w-full bg-primary font-bold text-sm py-4 text-center rounded-[10px] text-white mt-[30px]">
+      <button
+        onClick={nextStep}
+        className="w-full bg-primary font-bold text-sm py-4 text-center rounded-[10px] text-white mt-[30px]"
+      >
         Sign Up
       </button>
     </form>

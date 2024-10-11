@@ -1,4 +1,5 @@
 import React from "react";
+import { SignUpWith } from "./SignUpwith";
 
 export const SocialLogin = () => {
   return (
