@@ -3,10 +3,6 @@ import { Header } from "./header";
 import { Step1 } from "./Step1";
 
 export const RegisterRight = () => {
-  const [step, setStep] = useState(1);
-
-  const name = (params) => {};
-
   return (
     <section className="py-[70px] w-full max-w-[455px]">
       {/* Header */}
