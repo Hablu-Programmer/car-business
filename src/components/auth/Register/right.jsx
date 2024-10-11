@@ -16,7 +16,6 @@ export const RegisterRight = () => {
     setStep(stepNo);
   };
 
-  console.log("🚀 ~ RegisterRight ~ data:", data);
   const stepData = () => {
     switch (step) {
       case 1:

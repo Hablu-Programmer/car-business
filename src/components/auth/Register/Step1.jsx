@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 export const Step1 = ({ nextStep, changeData }) => {
+  const [agree, setAgree] = useState(false);
+
   return (
     <form>
       <div className="border rounded-lg border-outline pt-3 p-5">
@@ -19,7 +21,12 @@ export const Step1 = ({ nextStep, changeData }) => {
       </div>
 
       <div className="space-x-2.5 pt-[15px]">
-        <input type="radio" name="" id="" />
+        <input
+          type="checkbox"
+          name=""
+          id=""
+          onChange={(e) => setAgree(e.target.checked)}
+        />
         <span className="font-bold text-sm text-foreground">
           I agree with terms & conditions
         </span>
@@ -27,8 +34,9 @@ export const Step1 = ({ nextStep, changeData }) => {
 
       <button
         type="button"
+        disabled={!agree}
         onClick={nextStep}
-        className="w-full bg-primary font-bold text-sm py-4 text-center rounded-[10px] text-white mt-[30px]"
+        className="w-full bg-primary font-bold text-sm py-4 text-center rounded-[10px] text-white mt-[30px] disabled:opacity-80 disabled:cursor-not-allowed"
       >
         Sign Up
       </button>
