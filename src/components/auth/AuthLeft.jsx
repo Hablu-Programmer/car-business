@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const AuthLeft = () => {
   return (
     <section className="relative w-fit text-white">
@@ -18,9 +20,11 @@ export const AuthLeft = () => {
         <h6 className="font-semibold text-xs md:text-base">
           Do you already have an account?
         </h6>
-        <button className="bg-primary font-bold text-sm text-white text-center py-3 px-8 rounded-[10px]">
-          Sign&nbsp;In
-        </button>
+        <Link to="/login">
+          <button className="bg-primary font-bold text-sm text-white text-center py-3 px-8 rounded-[10px]">
+            Sign&nbsp;In
+          </button>
+        </Link>
       </div>
     </section>
   );
