@@ -1,17 +1,26 @@
 import React, { useState } from "react";
+import { cn } from "../../../lib/utils";
 
-export const Step1 = ({ nextStep, changeData }) => {
+export const Step1 = ({ nextStep, changeData, email }) => {
   const [agree, setAgree] = useState(false);
+
+  const isValidEmail = () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   return (
     <form>
-      <div className="border rounded-lg border-outline pt-3 p-5">
+      <div
+        className={cn(
+          "border rounded-lg border-outline pt-3 p-5",
+          email.length !== 0 && !isValidEmail() && "border-red-500"
+        )}
+      >
         <label htmlFor="email" className="text-xs text-foreground">
           Email
         </label>
         <div className="flex justify-between items-center w-full gap-2.5">
           <input
             placeholder="Enter your email!"
+            name="email"
             type="email"
             onChange={(e) => changeData(e.target.name, e.target.value)}
             className="w-full font-bold text-sm focus:outline-none placeholder:font-normal"
@@ -34,7 +43,7 @@ export const Step1 = ({ nextStep, changeData }) => {
 
       <button
         type="button"
-        disabled={!agree}
+        disabled={!agree || !isValidEmail()}
         onClick={nextStep}
         className="w-full bg-primary font-bold text-sm py-4 text-center rounded-[10px] text-white mt-[30px] disabled:opacity-80 disabled:cursor-not-allowed"
       >

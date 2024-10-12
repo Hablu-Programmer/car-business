@@ -349,115 +349,140 @@
          };
          ```
 
-     - create a next step functionally
+8. ### create a next step functionally
 
-       - `RegisterRight.jsx`
+   - `RegisterRight.jsx`
 
-         ```javascript
-         export const RegisterRight = () => {
-           const [data, setData] = useState({
-             email: "",
-           });
-           const [step, setStep] = useState(1);
+     ```javascript
+     export const RegisterRight = () => {
+       const [data, setData] = useState({
+         email: "",
+       });
+       const [step, setStep] = useState(1);
 
-           const changeData = (name, value) =>
-             setData({ ...data, [name]: value });
-           const nextStep = () => {
-             const stepNo =
-               (step === 1 && data.email.length <= 1 && 2) ||
-               (step === 2 && 2) ||
-               1;
-             setStep(stepNo);
-           };
+       const changeData = (name, value) => setData({ ...data, [name]: value });
+       const nextStep = () => {
+         const stepNo =
+           (step === 1 && data.email.length <= 1 && 2) ||
+           (step === 2 && 2) ||
+           1;
+         setStep(stepNo);
+       };
 
-           const stepData = () => {
-             switch (step) {
-               case 1:
-                 return {
-                   main: (
-                     <>
-                       <Step1 nextStep={nextStep} changeData={changeData} />
-                       <SocialLogin />
-                     </>
-                   ),
-                   title: "Sign Up to getting started",
-                   subtitle: "Enter your details to proceed further",
-                 };
-               case 2:
-                 return {
-                   main: <></>,
-                   title: "Tell us about yourself",
-                   subtitle: "Enter your details to proceed further",
-                 };
+       const stepData = () => {
+         switch (step) {
+           case 1:
+             return {
+               main: (
+                 <>
+                   <Step1 nextStep={nextStep} changeData={changeData} />
+                   <SocialLogin />
+                 </>
+               ),
+               title: "Sign Up to getting started",
+               subtitle: "Enter your details to proceed further",
+             };
+           case 2:
+             return {
+               main: <></>,
+               title: "Tell us about yourself",
+               subtitle: "Enter your details to proceed further",
+             };
 
-               default:
-                 return { main: <></>, title: "", subtitle: "" };
-             }
-           };
+           default:
+             return { main: <></>, title: "", subtitle: "" };
+         }
+       };
 
-           return (
-             <section className="py-[70px] w-full max-w-[455px]">
-               {/* Header */}
-               <Header
-                 title={stepData().title}
-                 subTitle={stepData().subtitle}
+       return (
+         <section className="py-[70px] w-full max-w-[455px]">
+           {/* Header */}
+           <Header title={stepData().title} subTitle={stepData().subtitle} />
+
+           {/* Authentication Form */}
+           <div className="w-full max-w-[420px] mx-auto pt-[42px]">
+             {stepData().main}
+           </div>
+         </section>
+       );
+     };
+     ```
+
+   - `Step1.jsx`
+
+     ```javascript
+     import React, { useState } from "react";
+
+     export const Step1 = ({ nextStep, changeData }) => {
+       const [agree, setAgree] = useState(false);
+
+       return (
+         <form>
+           <div className="border rounded-lg border-outline pt-3 p-5">
+             <label htmlFor="email" className="text-xs text-foreground">
+               Email
+             </label>
+             <div className="flex justify-between items-center w-full gap-2.5">
+               <input
+                 placeholder="Enter your email!"
+                 type="email"
+                 onChange={(e) => changeData(e.target.name, e.target.value)}
+                 className="w-full font-bold text-sm focus:outline-none placeholder:font-normal"
                />
+               <img src="/icons/email.png" alt="email icon" />
+             </div>
+           </div>
 
-               {/* Authentication Form */}
-               <div className="w-full max-w-[420px] mx-auto pt-[42px]">
-                 {stepData().main}
-               </div>
-             </section>
-           );
-         };
-         ```
+           <div className="space-x-2.5 pt-[15px]">
+             <input
+               type="checkbox"
+               name=""
+               id=""
+               onChange={(e) => setAgree(e.target.checked)}
+             />
+             <span className="font-bold text-sm text-foreground">
+               I agree with terms & conditions
+             </span>
+           </div>
 
-       - `Step1.jsx`
+           <button
+             type="button"
+             disabled={!agree}
+             onClick={nextStep}
+             className="w-full bg-primary font-bold text-sm py-4 text-center rounded-[10px] text-white mt-[30px] disabled:opacity-80 disabled:cursor-not-allowed"
+           >
+             Sign Up
+           </button>
+         </form>
+       );
+     };
+     ```
 
-         ```javascript
-         import React, { useState } from "react";
+9. ### Add cn function and Email Validity Check function
 
-         export const Step1 = ({ nextStep, changeData }) => {
-           const [agree, setAgree] = useState(false);
+- pass email in `Step1.jsx` component
+  ```javascript
+  <Step1 email={data.email} nextStep={nextStep} changeData={changeData} />
+  ```
+- It will check if the email is correct and if it is wrong then the border color will show red
 
-           return (
-             <form>
-               <div className="border rounded-lg border-outline pt-3 p-5">
-                 <label htmlFor="email" className="text-xs text-foreground">
-                   Email
-                 </label>
-                 <div className="flex justify-between items-center w-full gap-2.5">
-                   <input
-                     placeholder="Enter your email!"
-                     type="email"
-                     onChange={(e) => changeData(e.target.name, e.target.value)}
-                     className="w-full font-bold text-sm focus:outline-none placeholder:font-normal"
-                   />
-                   <img src="/icons/email.png" alt="email icon" />
-                 </div>
-               </div>
+  - `isValidEmail` function
+    ```javascript
+    const isValidEmail = () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    ```
+  - add `cn` function in `lib/utils/index.js`.
 
-               <div className="space-x-2.5 pt-[15px]">
-                 <input
-                   type="checkbox"
-                   name=""
-                   id=""
-                   onChange={(e) => setAgree(e.target.checked)}
-                 />
-                 <span className="font-bold text-sm text-foreground">
-                   I agree with terms & conditions
-                 </span>
-               </div>
+    ```javascript
+    import { clsx } from "clsx";
+    import { twMerge } from "tailwind-merge";
 
-               <button
-                 type="button"
-                 disabled={!agree}
-                 onClick={nextStep}
-                 className="w-full bg-primary font-bold text-sm py-4 text-center rounded-[10px] text-white mt-[30px] disabled:opacity-80 disabled:cursor-not-allowed"
-               >
-                 Sign Up
-               </button>
-             </form>
-           );
-         };
-         ```
+    export const cn = (...inputs) => twMerge(clsx(...inputs));
+    ```
+
+  - change border color
+    ```javascript
+    className={cn(
+      "border rounded-lg border-outline pt-3 p-5",
+      email.length !== 0 && !isValidEmail() && "border-red-500"
+    )}
+    ```

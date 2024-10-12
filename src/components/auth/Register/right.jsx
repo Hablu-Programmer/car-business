@@ -22,7 +22,11 @@ export const RegisterRight = () => {
         return {
           main: (
             <>
-              <Step1 nextStep={nextStep} changeData={changeData} />
+              <Step1
+                email={data.email}
+                nextStep={nextStep}
+                changeData={changeData}
+              />
               <SocialLogin />
             </>
           ),
