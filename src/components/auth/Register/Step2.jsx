@@ -1,16 +1,22 @@
 import React, { useState } from "react";
+import { ConfirmPassword, Email, Parson, Password } from "../../../lib/icon";
 import { Button } from "../button";
 import { Input } from "../input";
 
 export const Step2 = ({ nextStep, changeData, data }) => {
   const [agree, setAgree] = useState(false);
 
+  const handleRegister = () => {
+    console.log(data);
+    nextStep();
+  };
+
   return (
     <form>
       <div className="space-y-2">
         <Input
           disabled
-          icon="/icons/email.png"
+          icon={<Email />}
           name="email"
           type="email"
           label="Email"
@@ -20,42 +26,42 @@ export const Step2 = ({ nextStep, changeData, data }) => {
         />
         <div className="flex justify-between items-center gap-2">
           <Input
-            disabled
-            icon="/icons/email.png"
+            icon={<Parson />}
             name="firstName"
             type="test"
             label="First name"
+            placeholder="First name"
             value={data.firstName}
             isNotValid={false}
             changeData={changeData}
           />
           <Input
-            disabled
-            icon="/icons/email.png"
+            icon={<Parson />}
             name="lastName"
             type="text"
             label="Last name"
+            placeholder="Last name"
             value={data.lastName}
             isNotValid={false}
             changeData={changeData}
           />
         </div>
         <Input
-          disabled
-          icon="/icons/email.png"
+          icon={<Password />}
           name="password"
           type="password"
           label="Password"
+          placeholder="Password"
           value={data.password}
           isNotValid={false}
           changeData={changeData}
         />
         <Input
-          disabled
-          icon="/icons/email.png"
+          icon={<ConfirmPassword />}
           name="confirmPassword"
-          type="text"
+          type="password"
           label="Confirm password"
+          placeholder="Confirm password"
           value={data.confirmPassword}
           isNotValid={false}
           changeData={changeData}
@@ -74,7 +80,7 @@ export const Step2 = ({ nextStep, changeData, data }) => {
         </span>
       </div>
 
-      <Button disabled={!agree || !isValidEmail()} onClick={nextStep}>
+      <Button disabled={!agree} onClick={handleRegister}>
         Continue
       </Button>
     </form>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Email } from "../../../lib/icon";
 import { Button } from "../button";
 import { Input } from "../input";
 
@@ -14,7 +15,7 @@ export const Step1 = ({ nextStep, changeData, email }) => {
         type="email"
         label="Email"
         value={email}
-        icon="/icons/email.png"
+        icon={<Email />}
         changeData={changeData}
         placeholder="Enter your email!"
         isNotValid={email.length !== 0 && !isValidEmail()}
