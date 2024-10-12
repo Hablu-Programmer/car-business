@@ -15,6 +15,7 @@ export const RegisterRight = () => {
   const [step, setStep] = useState(1);
 
   const changeData = (name, value) => setData({ ...data, [name]: value });
+
   const nextStep = (propsStep) => {
     const step1 = data.email;
     const step2 =
