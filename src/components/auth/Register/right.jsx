@@ -15,12 +15,15 @@ export const RegisterRight = () => {
   const [step, setStep] = useState(1);
 
   const changeData = (name, value) => setData({ ...data, [name]: value });
-  const nextStep = () => {
+  const nextStep = (propsStep) => {
     const step1 = data.email;
     const step2 =
       data.firstName || data.lastName || data.password || data.confirmPassword;
     const stepNo =
-      (step === 1 && step1 && 2) || (step === 2 && step2 && 2) || 1;
+      (step === 1 && step1 && 2) ||
+      (step === 2 && step2 && propsStep) ||
+      2 ||
+      1;
     setStep(stepNo);
   };
 
@@ -46,6 +49,12 @@ export const RegisterRight = () => {
           main: (
             <Step2 data={data} nextStep={nextStep} changeData={changeData} />
           ),
+          title: "Tell us about yourself",
+          subtitle: "Enter your details to proceed further",
+        };
+      case 3:
+        return {
+          main: <></>,
           title: "Tell us about yourself",
           subtitle: "Enter your details to proceed further",
         };

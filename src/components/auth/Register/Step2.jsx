@@ -3,17 +3,56 @@ import { ConfirmPassword, Email, Parson, Password } from "../../../lib/icon";
 import { Button } from "../button";
 import { Input } from "../input";
 
+// Mock function to simulate saving data to a database
+const saveRegistrationData = (data) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("Data saved successfully", data);
+    }, 1000); // Simulating async database call
+  });
+};
+
 export const Step2 = ({ nextStep, changeData, data }) => {
   const [agree, setAgree] = useState(false);
 
-  const handleRegister = () => {
-    console.log(data);
-    nextStep();
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    // Check if all fields are filled
+    if (
+      !data.email ||
+      !data.firstName ||
+      !data.lastName ||
+      !data.password ||
+      !data.confirmPassword
+    ) {
+      setError("Please fill in all the fields.");
+      return;
+    }
+
+    // Check if passwords match
+    if (data.password !== data.confirmPassword) {
+      setError("Passwords do not match!");
+      return;
+    }
+
+    // All checks passed, save data (e.g., send to backend/database)
+    try {
+      // Simulate API call or database save
+      await saveRegistrationData(data);
+
+      // Proceed to the next step after successful registration
+      console.log("User registered successfully", data);
+      nextStep(3);
+    } catch (error) {
+      setError("An error occurred while registering. Please try again.");
+      console.error("Registration Error:", error);
+    }
   };
 
   return (
     <form>
-      <div className="space-y-2">
+      <div className="space-y-2" onSubmit={handleRegister}>
         <Input
           disabled
           icon={<Email />}
@@ -80,7 +119,7 @@ export const Step2 = ({ nextStep, changeData, data }) => {
         </span>
       </div>
 
-      <Button disabled={!agree} onClick={handleRegister}>
+      <Button type="submit" disabled={!agree} onClick={handleRegister}>
         Continue
       </Button>
     </form>
