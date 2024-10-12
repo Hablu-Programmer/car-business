@@ -487,17 +487,18 @@
     )}
     ```
 
-10. ### Create Common component `Input.jsx`
+10. ### Add Input Common component `Input.jsx`
 
     ```javascript
     import { cn } from "../../lib/utils";
 
     export const Input = ({
-      label,
+      icon,
       name,
       type,
+      value,
+      label,
       changeData,
-      icon,
       isNotValid,
       placeholder,
     }) => {
@@ -516,6 +517,7 @@
               placeholder={placeholder}
               name={name}
               type={type}
+              value={value}
               onChange={(e) => changeData(e.target.name, e.target.value)}
               className="w-full font-bold text-sm focus:outline-none placeholder:font-normal"
             />
@@ -526,7 +528,7 @@
     };
     ```
 
-11. ### Add Common Button Component
+11. ### Add Button Common Component
 
     ```javascript
     import React from "react";

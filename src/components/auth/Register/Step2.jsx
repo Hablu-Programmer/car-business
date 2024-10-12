@@ -2,22 +2,19 @@ import React, { useState } from "react";
 import { Button } from "../button";
 import { Input } from "../input";
 
-export const Step1 = ({ nextStep, changeData, email }) => {
+export const Step2 = ({ nextStep, changeData, data }) => {
   const [agree, setAgree] = useState(false);
-
-  const isValidEmail = () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   return (
     <form>
       <Input
+        icon="/icons/email.png"
         name="email"
         type="email"
         label="Email"
-        value={email}
-        icon="/icons/email.png"
-        changeData={changeData}
         placeholder="Enter your email!"
-        isNotValid={email.length !== 0 && !isValidEmail()}
+        changeData={changeData}
+        isNotValid={data.email.length !== 0 && !isValidEmail()}
       />
 
       <div className="space-x-2.5 pt-[15px]">
