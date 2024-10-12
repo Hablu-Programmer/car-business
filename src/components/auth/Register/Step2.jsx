@@ -7,15 +7,60 @@ export const Step2 = ({ nextStep, changeData, data }) => {
 
   return (
     <form>
-      <Input
-        icon="/icons/email.png"
-        name="email"
-        type="email"
-        label="Email"
-        placeholder="Enter your email!"
-        changeData={changeData}
-        isNotValid={data.email.length !== 0 && !isValidEmail()}
-      />
+      <div className="space-y-2">
+        <Input
+          disabled
+          icon="/icons/email.png"
+          name="email"
+          type="email"
+          label="Email"
+          value={data.email}
+          isNotValid={false}
+          changeData={changeData}
+        />
+        <div className="flex justify-between items-center gap-2">
+          <Input
+            disabled
+            icon="/icons/email.png"
+            name="firstName"
+            type="test"
+            label="First name"
+            value={data.firstName}
+            isNotValid={false}
+            changeData={changeData}
+          />
+          <Input
+            disabled
+            icon="/icons/email.png"
+            name="lastName"
+            type="text"
+            label="Last name"
+            value={data.lastName}
+            isNotValid={false}
+            changeData={changeData}
+          />
+        </div>
+        <Input
+          disabled
+          icon="/icons/email.png"
+          name="password"
+          type="password"
+          label="Password"
+          value={data.password}
+          isNotValid={false}
+          changeData={changeData}
+        />
+        <Input
+          disabled
+          icon="/icons/email.png"
+          name="confirmPassword"
+          type="text"
+          label="Confirm password"
+          value={data.confirmPassword}
+          isNotValid={false}
+          changeData={changeData}
+        />
+      </div>
 
       <div className="space-x-2.5 pt-[15px]">
         <input
@@ -30,7 +75,7 @@ export const Step2 = ({ nextStep, changeData, data }) => {
       </div>
 
       <Button disabled={!agree || !isValidEmail()} onClick={nextStep}>
-        Sign Up
+        Continue
       </Button>
     </form>
   );

@@ -494,13 +494,10 @@
 
     export const Input = ({
       icon,
-      name,
-      type,
-      value,
       label,
       changeData,
       isNotValid,
-      placeholder,
+      ...inputProps
     }) => {
       return (
         <div
@@ -509,17 +506,14 @@
             isNotValid && "border-red-500"
           )}
         >
-          <label htmlFor={name} className="text-xs text-foreground">
+          <label htmlFor={inputProps.name} className="text-xs text-foreground">
             {label}
           </label>
           <div className="flex justify-between items-center w-full gap-2.5">
             <input
-              placeholder={placeholder}
-              name={name}
-              type={type}
-              value={value}
               onChange={(e) => changeData(e.target.name, e.target.value)}
-              className="w-full font-bold text-sm focus:outline-none placeholder:font-normal"
+              className="w-full font-bold text-sm focus:outline-none placeholder:font-normal  bg-transparent"
+              {...inputProps}
             />
             <img src={icon} alt="" />
           </div>

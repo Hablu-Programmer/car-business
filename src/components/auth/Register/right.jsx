@@ -2,17 +2,25 @@ import { useState } from "react";
 import { SocialLogin } from "../SocialLogin";
 import { Header } from "./header";
 import { Step1 } from "./Step1";
+import { Step2 } from "./Step2";
 
 export const RegisterRight = () => {
   const [data, setData] = useState({
     email: "",
+    firstName: "",
+    lastName: "",
+    password: "",
+    confirmPassword: "",
   });
   const [step, setStep] = useState(1);
 
   const changeData = (name, value) => setData({ ...data, [name]: value });
   const nextStep = () => {
+    const step1 = data.email;
+    const step2 =
+      data.firstName || data.lastName || data.password || data.confirmPassword;
     const stepNo =
-      (step === 1 && data.email.length <= 1 && 2) || (step === 2 && 2) || 1;
+      (step === 1 && step1 && 2) || (step === 2 && step2 && 2) || 1;
     setStep(stepNo);
   };
 
@@ -35,7 +43,9 @@ export const RegisterRight = () => {
         };
       case 2:
         return {
-          main: <></>,
+          main: (
+            <Step2 data={data} nextStep={nextStep} changeData={changeData} />
+          ),
           title: "Tell us about yourself",
           subtitle: "Enter your details to proceed further",
         };
