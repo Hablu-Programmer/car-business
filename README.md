@@ -479,10 +479,73 @@
     export const cn = (...inputs) => twMerge(clsx(...inputs));
     ```
 
-  - change border color
+  - change input border color
     ```javascript
     className={cn(
       "border rounded-lg border-outline pt-3 p-5",
       email.length !== 0 && !isValidEmail() && "border-red-500"
     )}
+    ```
+
+10. ### Create Common component `Input.jsx`
+
+    ```javascript
+    import { cn } from "../../lib/utils";
+
+    export const Input = ({
+      label,
+      name,
+      type,
+      changeData,
+      icon,
+      isNotValid,
+      placeholder,
+    }) => {
+      return (
+        <div
+          className={cn(
+            "border rounded-lg border-outline pt-3 p-5",
+            isNotValid && "border-red-500"
+          )}
+        >
+          <label htmlFor={name} className="text-xs text-foreground">
+            {label}
+          </label>
+          <div className="flex justify-between items-center w-full gap-2.5">
+            <input
+              placeholder={placeholder}
+              name={name}
+              type={type}
+              onChange={(e) => changeData(e.target.name, e.target.value)}
+              className="w-full font-bold text-sm focus:outline-none placeholder:font-normal"
+            />
+            <img src={icon} alt="" />
+          </div>
+        </div>
+      );
+    };
+    ```
+
+11. ### Add Common Button Component
+
+    ```javascript
+    import React from "react";
+
+    export const Button = ({
+      children,
+      disabled,
+      type = "button",
+      onClick,
+    }) => {
+      return (
+        <button
+          type={type}
+          disabled={disabled}
+          onClick={onClick}
+          className="w-full bg-primary font-bold text-sm py-4 text-center rounded-[10px] text-white mt-[30px] disabled:opacity-80 disabled:cursor-not-allowed"
+        >
+          {children}
+        </button>
+      );
+    };
     ```
