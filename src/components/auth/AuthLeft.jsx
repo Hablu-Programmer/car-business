@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const AuthLeft = () => {
+export const AuthLeft = ({ label, link, buttonText }) => {
   return (
     <section className="relative w-fit text-white">
       <img
@@ -17,12 +17,10 @@ export const AuthLeft = () => {
 
       {/* footer */}
       <div className="absolute w-full bottom-0 left-0 z-10 h-20 sm:h-[65px] xl:h-[86px] flex justify-between items-center px-2.5 sm:px-10 lg:px-[60px]">
-        <h6 className="font-semibold text-xs md:text-base">
-          Do you already have an account?
-        </h6>
-        <Link to="/login">
+        <h6 className="font-semibold text-xs md:text-base">{label}</h6>
+        <Link to={link}>
           <button className="bg-primary font-bold text-sm text-white text-center py-3 px-8 rounded-[10px]">
-            Sign&nbsp;In
+            {buttonText}
           </button>
         </Link>
       </div>
