@@ -3,6 +3,7 @@ import { SocialLogin } from "../SocialLogin";
 import { Header } from "./header";
 import { Step1 } from "./Step1";
 import { Step2 } from "./Step2";
+import { Step3 } from "./Step3";
 
 export const RegisterRight = () => {
   const [data, setData] = useState({
@@ -53,12 +54,6 @@ export const RegisterRight = () => {
           title: "Tell us about yourself",
           subtitle: "Enter your details to proceed further",
         };
-      case 3:
-        return {
-          main: <></>,
-          title: "Tell us about yourself",
-          subtitle: "Enter your details to proceed further",
-        };
 
       default:
         return { main: <></>, title: "", subtitle: "" };
@@ -68,11 +63,13 @@ export const RegisterRight = () => {
   return (
     <section className="py-[70px] w-full max-w-[455px]">
       {/* Header */}
-      <Header title={stepData().title} subTitle={stepData().subtitle} />
+      {step !== 3 && (
+        <Header title={stepData().title} subTitle={stepData().subtitle} />
+      )}
 
       {/* Authentication Form */}
       <div className="w-full max-w-[420px] mx-auto pt-[42px]">
-        {stepData().main}
+        {step === 3 ? <Step3 email={data.email} /> : stepData().main}
       </div>
     </section>
   );
