@@ -1,5 +1,5 @@
 import { AuthLeft } from "../components/auth/AuthLeft";
-import { LoginRight } from "../components/auth/Login/right";
+import { LoginRight } from "../components/auth/login-right";
 import { AuthWarper } from "../components/auth/warper";
 
 export const Login = () => {

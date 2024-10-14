@@ -1150,3 +1150,109 @@
     ```
 
 21. ### Create `recover-password` page and initial setup
+
+    ```javascript
+    import { AuthLeft } from "../components/auth/AuthLeft";
+    import { RecoverPasswordRight } from "../components/auth/recover-password-right";
+    import { AuthWarper } from "../components/auth/warper";
+
+    export const RecoverPassword = () => (
+      <AuthWarper>
+        <AuthLeft
+          link="/register"
+          buttonText="Sign Up"
+          label="You don’t have an account?"
+        />
+        <RecoverPasswordRight />
+      </AuthWarper>
+    );
+    ```
+
+    - `RecoverPasswordRight.jsx`
+
+      ```javascript
+      import React, { useState } from "react";
+      import { Header } from "./Register/header";
+      import { Input } from "./input";
+      import { Email } from "../../lib/icon";
+      import { Button } from "./button";
+
+      export const RecoverPasswordRight = () => {
+        const [data, setData] = useState({ email: "", password: "" });
+
+        const changeData = (name, value) => setData({ ...data, [name]: value });
+        const isValidEmail = () =>
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
+
+        return (
+          <section className="py-[70px] w-full max-w-[500px]">
+            {/* Header */}
+            <Header
+              customImg="/img/recover-password.png"
+              title="Lost your password? Enter your details to recover"
+              subTitle="Enter your details to proceed further"
+            />
+
+            {/* Authentication Form */}
+            <div className="w-full max-w-[420px] mx-auto pt-[42px]">
+              <form>
+                <Input
+                  name="email"
+                  type="email"
+                  label="Email"
+                  value={data.email}
+                  icon={<Email />}
+                  changeData={changeData}
+                  placeholder="Enter your email!"
+                  isNotValid={data.email && !isValidEmail()}
+                />
+
+                <Button disabled={!isValidEmail()} onClick={() => {}}>
+                  Recover
+                </Button>
+              </form>
+            </div>
+          </section>
+        );
+      };
+      ```
+
+    - Update Header Component
+
+      ```javascript
+      import React from "react";
+
+      export const Header = ({ title, subTitle, customImg }) => {
+        return (
+          <div className="flex flex-col justify-center items-center text-center">
+            <img src={customImg || "/logo.svg"} alt="Logo" />
+            <h1 className="font-bold text-2xl sm:text-3xl lg:text-4xl pt-[34px]">
+              {title}
+            </h1>
+            <p className="text-sm text-foreground pt-[5px]">{subTitle}</p>
+          </div>
+        );
+      };
+      ```
+
+    - Update in Register-Step3 component `Step3.jsx`
+
+      ```javascript
+      import React from "react";
+      import { Button } from "../button";
+      import { Header } from "./header";
+
+      export const Step3 = ({ email }) => {
+        return (
+          <div className="space-y-[30px]">
+            <Header
+              customImg="/img/thank-you.png"
+              title="Thank you!"
+              subTitle={`We sent an email to ${email} Click confirmation link in the email to
+                verify your account`}
+            />
+            <Button className="mt-2.5">Open Email App & Confirm</Button>
+          </div>
+        );
+      };
+      ```

@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { ErrorPage, Home, Login, Register } from "../pages";
+import { ErrorPage, Home, Login, RecoverPassword, Register } from "../pages";
 import { WithNavbar } from "./with-navbar";
 
 export const router = createBrowserRouter([
@@ -15,5 +15,9 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/recover-password",
+    element: <RecoverPassword />,
   },
 ]);

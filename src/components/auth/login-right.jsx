@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Email, Password } from "../../../lib/icon";
-import { Header } from "../Register/header";
-import { SocialLogin } from "../SocialLogin";
-import { Button } from "../button";
-import { Input } from "../input";
+import { Email, Password } from "../../lib/icon";
+import { Header } from "./Register/header";
+import { SocialLogin } from "./SocialLogin";
+import { Button } from "./button";
+import { Input } from "./input";
 
 export const LoginRight = () => {
   const [data, setData] = useState({ email: "", password: "" });
