@@ -1,75 +1,81 @@
 import { useState } from "react";
-import { SocialLogin } from "../SocialLogin";
+import { Link } from "react-router-dom";
+import { Email, Password } from "../../../lib/icon";
 import { Header } from "../Register/header";
-import { Step1 } from "../Register/Step1";
-import { Step2 } from "../Register/Step2";
-import { Step3 } from "../Register/Step3";
+import { SocialLogin } from "../SocialLogin";
+import { Button } from "../button";
+import { Input } from "../input";
 
 export const LoginRight = () => {
-  const [data, setData] = useState({
-    email: "",
-    firstName: "",
-    lastName: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const [step, setStep] = useState(1);
+  const [data, setData] = useState({ email: "", password: "" });
+  const [agree, setAgree] = useState(false);
 
   const changeData = (name, value) => setData({ ...data, [name]: value });
+  const clearFiled = (name) => setData({ ...data, [name]: "" });
 
-  const nextStep = (propsStep) => {
-    const step1 = data.email;
-    const step2 =
-      data.firstName || data.lastName || data.password || data.confirmPassword;
-    const stepNo =
-      (step === 1 && step1 && 2) ||
-      (step === 2 && step2 && propsStep) ||
-      2 ||
-      1;
-    setStep(stepNo);
-  };
-
-  const stepData = () => {
-    switch (step) {
-      case 1:
-        return {
-          main: (
-            <>
-              <Step1
-                email={data.email}
-                nextStep={nextStep}
-                changeData={changeData}
-              />
-              <SocialLogin />
-            </>
-          ),
-          title: "Sign Up to getting started",
-          subtitle: "Enter your details to proceed further",
-        };
-      case 2:
-        return {
-          main: (
-            <Step2 data={data} nextStep={nextStep} changeData={changeData} />
-          ),
-          title: "Tell us about yourself",
-          subtitle: "Enter your details to proceed further",
-        };
-
-      default:
-        return { main: <></>, title: "", subtitle: "" };
-    }
-  };
+  const isValidEmail = () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
 
   return (
     <section className="py-[70px] w-full max-w-[455px]">
       {/* Header */}
-      {step !== 3 && (
-        <Header title={stepData().title} subTitle={stepData().subtitle} />
-      )}
+      <Header
+        title="Sign In to your account"
+        subTitle="Enter your details to proceed further"
+      />
 
       {/* Authentication Form */}
       <div className="w-full max-w-[420px] mx-auto pt-[42px]">
-        {step === 3 ? <Step3 email={data.email} /> : stepData().main}
+        <form>
+          <div className="space-y-2">
+            <Input
+              name="email"
+              type="email"
+              label="Email"
+              value={data.email}
+              icon={<Email />}
+              changeData={changeData}
+              placeholder="Enter your email!"
+              isNotValid={data.email && !isValidEmail()}
+            />
+            <Input
+              isClearable
+              icon={<Password />}
+              name="password"
+              type="password"
+              label="Password"
+              placeholder="Password"
+              value={data.password}
+              isNotValid={false}
+              clearFiled={clearFiled}
+              changeData={changeData}
+            />
+          </div>
+
+          <div className="flex justify-between items-center gap-2.5  pt-[15px]">
+            <div className="space-x-2.5">
+              <input
+                type="radio"
+                name=""
+                id=""
+                onChange={(e) => setAgree(e.target.checked)}
+              />
+              <span className="font-bold text-sm text-[#0D0A19]">
+                Remember me
+              </span>
+            </div>
+            <Link
+              to="/recover-password"
+              className="font-semibold text-sm text-[#7963F0]"
+            >
+              Recover password
+            </Link>
+          </div>
+
+          <Button disabled={!agree || !isValidEmail()} onClick={() => {}}>
+            Sign in
+          </Button>
+        </form>
+        <SocialLogin />
       </div>
     </section>
   );

@@ -1,10 +1,13 @@
+import { Clear } from "../../lib/icon";
 import { cn } from "../../lib/utils";
 
 export const Input = ({
   icon,
   label,
   changeData,
+  clearFiled,
   isNotValid,
+  isClearable,
   ...inputProps
 }) => {
   return (
@@ -25,11 +28,16 @@ export const Input = ({
           className="w-full font-bold text-sm focus:outline-none placeholder:font-normal bg-transparent"
           {...inputProps}
         />
-        <div
-          className={cn("text-[#9A9EA7]", inputProps.value && "text-[#0D0A19]")}
+        <button
+          type="button"
+          onClick={() => clearFiled(inputProps.name)}
+          className={cn(
+            "text-[#9A9EA7]",
+            !isClearable && inputProps.value && "text-[#0D0A19]"
+          )}
         >
-          {icon}
-        </div>
+          {isClearable && inputProps.value ? <Clear /> : icon}
+        </button>
       </div>
     </div>
   );
